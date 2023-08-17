@@ -14,8 +14,6 @@ export default function AuthLayout({children, titulo = ""}) {
         minHeight: '100vh',
         backgroundColor: 'primary.main',
         padding: 4
-
-
       }
     }
     >
