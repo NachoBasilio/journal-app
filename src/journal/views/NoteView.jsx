@@ -1,5 +1,6 @@
 import { SaveOutlined } from "@mui/icons-material";
 import { Button, Grid, Typography, TextField } from "@mui/material";
+import ImageGallery from "../components/ImageGallery";
 
 export default function NoteView() {
   return (
@@ -31,6 +32,7 @@ export default function NoteView() {
           label="Hoy..."
           minRows={7}
         />
+        <ImageGallery/>
       </Grid>
     </Grid>
   )

@@ -17,7 +17,7 @@ export default function SideBar({drawerWidth}) {
             }}
         >
             <Toolbar>
-                <Typography variant="h6" noWrap>Nacho</Typography>
+                <Typography variant="h6" noWrap>Aguara guazu</Typography>
             </Toolbar>
             <Divider/>
             <List>
