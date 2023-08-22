@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 export default function useForm( initialForm = {}, formaValidations = {} ){
   
@@ -32,11 +32,25 @@ export default function useForm( initialForm = {}, formaValidations = {} ){
         setFormValidation(formCheckedValues)
     }
 
+    const isFormValid = useMemo(() => {
+        for (const formaValue of Object.keys(formValidation)) {
+            if (formValidation[formaValue] != null) {
+                return false
+            }
+
+        }
+        return true    
+        
+
+    },[formValidation])
+
     return {
         ...formState,
         formState,
         onInputChange,
         onResetForm,
+        isFormValid,
+
         ...formValidation
     }
 }

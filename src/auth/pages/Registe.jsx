@@ -3,6 +3,7 @@ import {Link as RouterLink } from "react-router-dom";
 import { Grid, TextField, Button, Link } from "@mui/material";
 import AuthLayout from "../layout/AuthLayout";
 import useForm from "../../hooks/useForm";
+import {useState } from "react";
 
 const formaValidations = {
   email: [(value) => value.includes("@"), "El correo debe contener un @"],
@@ -12,18 +13,21 @@ const formaValidations = {
   
 
 export default function Registe() {
-  const {email, password, displayName, onInputChange, formState, emailValid , passwordValid, displayNameValid} = useForm({
-    email: "afsd",
-    password: "asfd",
-    displayName: "asfd"
+  const [formSubmitted, setFormSubmitted] = useState(false)
+
+  const {email, password, displayName, onInputChange, formState, emailValid , passwordValid, displayNameValid, isFormValid} = useForm({
+    email: "",
+    password: "",
+    displayName: ""
   },formaValidations)
 
   console.log(emailValid, passwordValid, displayNameValid);
 
   const onSubmit = (e)=>{
     e.preventDefault();
-
+    setFormSubmitted(true)
   }
+  
 
 
 
@@ -44,7 +48,8 @@ export default function Registe() {
           value={displayName}
           onChange={(e)=>onInputChange(e)}
           fullWidth
-
+          error={!!displayNameValid && formSubmitted}
+          helperText={displayNameValid}
           />
         </Grid>
         <Grid item xs={12} sx={{mt:2}}
@@ -58,6 +63,8 @@ export default function Registe() {
             value={email}
             onChange={(e)=>onInputChange(e)}
             fullWidth
+            error={!!emailValid && formSubmitted}
+            helperText={emailValid}
           />
 
         </Grid>
@@ -72,6 +79,8 @@ export default function Registe() {
           value={password}
           onChange={(e)=>onInputChange(e)}
           fullWidth
+          error={!!passwordValid && formSubmitted}
+          helperText={passwordValid}
           />
         </Grid>
         <Grid container spacing={2} sx={{mb:2, mt:1}}>
