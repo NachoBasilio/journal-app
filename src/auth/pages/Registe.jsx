@@ -1,9 +1,11 @@
+import {useMemo, useState } from "react";
 import {Link as RouterLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
-import { Grid, TextField, Button, Link } from "@mui/material";
+import { Grid, TextField, Button, Link, Alert } from "@mui/material";
 import AuthLayout from "../layout/AuthLayout";
 import useForm from "../../hooks/useForm";
-import {useState } from "react";
+import { startWithMailSingIn } from "../../store/auth/thunks";
 
 const formaValidations = {
   email: [(value) => value.includes("@"), "El correo debe contener un @"],
@@ -13,7 +15,12 @@ const formaValidations = {
   
 
 export default function Registe() {
+  const dispatch = useDispatch()
   const [formSubmitted, setFormSubmitted] = useState(false)
+  
+  const {status, errorMessage } = useSelector(state => state.auth)
+
+  const isCheckingAuth = useMemo(() => status === "chequeando", [status])
 
   const {email, password, displayName, onInputChange, formState, emailValid , passwordValid, displayNameValid, isFormValid} = useForm({
     email: "",
@@ -25,7 +32,13 @@ export default function Registe() {
 
   const onSubmit = (e)=>{
     e.preventDefault();
+    
+
     setFormSubmitted(true)
+
+    if(!isFormValid)return 
+    console.log(formState);
+    dispatch(startWithMailSingIn(formState))
   }
   
 
@@ -90,11 +103,27 @@ export default function Registe() {
             variant="contained" 
             fullWidth
             onClick={onSubmit}
+            disabled={isCheckingAuth}
 
             >
               Registrarme
             </Button>
           </Grid>
+
+        <Grid item xs={12}
+          sx={{
+            display: errorMessage !== null ? "block" : "none",
+          }}
+        >
+          <Alert
+
+            severity="error"
+
+            
+          >
+            {errorMessage}
+          </Alert>
+        </Grid>
 
         </Grid>
           <Grid container direction="row" justifyContent="end">

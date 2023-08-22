@@ -6,7 +6,7 @@ const initialState = {
     name: null,
     email: null,
     photoURL: null,
-    errorMesaage: null
+    errorMessage: null
 }
 
 const authSlice = createSlice({
@@ -19,7 +19,7 @@ const authSlice = createSlice({
       state.name = action.payload.displayName;
       state.email = action.payload.email;
       state.photoURL = action.payload.photoURL;
-      state.errorMesaage = null
+      state.errorMessage = null
     },
     logout: (state, action) => {
       state.status = "no-autenticado";
@@ -27,10 +27,11 @@ const authSlice = createSlice({
       state.name = null;
       state.email = null;
       state.photoURL = null;
-      state.errorMesaage = null
+      state.errorMessage = null
     },
     setError: (state, action) => {
-      state.errorMesaage = action.payload;
+      state.status = "no-autenticado";
+      state.errorMessage = action.payload;
     },
     checkingCredentials: (state, action) => {
       state.status = "chequeando";
