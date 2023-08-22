@@ -1,17 +1,18 @@
 import { useDispatch, useSelector } from "react-redux";
 import {Link as RouterLink } from "react-router-dom";
 import { Google } from "@mui/icons-material";
-import { Grid, TextField, Button, Link } from "@mui/material";
+import { Grid, TextField, Button, Link, Alert } from "@mui/material";
 import AuthLayout from "../layout/AuthLayout";
 import useForm from "../../hooks/useForm";
-import {checkingAuth, startGoogleSingIn} from "../../store/auth/thunks";
+import {checkingAuth, startGoogleSingIn, startLoginWithMailSingIn} from "../../store/auth/thunks";
 import { useMemo } from "react";
 
 
 export default function Login() {
   const dispatch = useDispatch()
   const {
-    status
+    status,
+    errorMessage
   } = useSelector(state => state.auth)
 
   const {email, password, onInputChange, formState} = useForm({
@@ -21,9 +22,14 @@ export default function Login() {
 
   const onSubmit = (e)=>{
     e.preventDefault();
-    dispatch(checkingAuth())
-    console.log(formState);
+    dispatch(startLoginWithMailSingIn({
+      email,
+      password
+    }))
+   
   }
+
+
 
   const isAuthenticating = useMemo(()=> status === "chequeando", [status])
 
@@ -72,6 +78,7 @@ export default function Login() {
                 <Button  
                 disabled={isAuthenticating}
                 variant="contained" 
+
                 fullWidth 
                 type="submit">
                   Login
@@ -87,6 +94,18 @@ export default function Login() {
                 </Button>
               </Grid>
             </Grid>
+            <Grid item xs={12}
+            sx={{
+            display: errorMessage !== null ? "block" : "none",
+            }}
+            >
+          <Alert
+            severity="error"
+          >
+            {errorMessage}
+          </Alert>
+        </Grid>
+
               <Grid container direction="row" justifyContent="end">
                 <Link 
                 component={RouterLink}
