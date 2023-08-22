@@ -16,8 +16,8 @@ export default function Login() {
   } = useSelector(state => state.auth)
 
   const {email, password, onInputChange, formState} = useForm({
-    email: "zorro_patas_largas@gmail.com",
-    password: "3731504430"
+    email: "",
+    password: ""
   })
 
   const onSubmit = (e)=>{
