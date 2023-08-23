@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 export default function AuthLayout({children, titulo = ""}) {
   return (
     <Grid
+    
     container
     spacing={0}
     direction="column"

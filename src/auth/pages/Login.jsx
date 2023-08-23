@@ -42,6 +42,7 @@ export default function Login() {
   return (  
       <AuthLayout titulo="Login">
         <form 
+        className="animate__animated animate__fadeIn animate__faster"
         onSubmit={onSubmit}
         >
           <Grid container
