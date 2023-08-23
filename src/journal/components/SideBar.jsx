@@ -1,8 +1,11 @@
 import { TurnedInNot } from '@mui/icons-material'
 import { Box, Divider, Drawer, Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar, Typography } from '@mui/material'
 import PropTypes from 'prop-types'
+import { useSelector } from 'react-redux'
 
 export default function SideBar({drawerWidth}) {
+    const {name} = useSelector(state => state.auth)
+
   return (
     <Box
         component='nav'
@@ -17,7 +20,7 @@ export default function SideBar({drawerWidth}) {
             }}
         >
             <Toolbar>
-                <Typography variant="h6" noWrap>Aguara guazu</Typography>
+                <Typography variant="h6" noWrap>{name}</Typography>
             </Toolbar>
             <Divider/>
             <List>
