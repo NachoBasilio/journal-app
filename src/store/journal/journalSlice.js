@@ -18,7 +18,7 @@ const journalSlice = createSlice({
   initialState,
   reducers: {
     addNewEmptyNote: (state, action) => {
-
+        
     },
     setActiveNote: (state, action) => {
 
