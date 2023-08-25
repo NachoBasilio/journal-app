@@ -26,3 +26,12 @@ export const startNewNote = () => {
         dispatch(setActiveNote(newNote) )
     }
 }
+
+
+export const startLoadingNotes = () => {
+    return async (dispatch, getState) => {
+        const {uid} = getState().auth; 
+        console.log(uid)
+        
+    }
+}

@@ -39,9 +39,9 @@ export function startWithMailSingIn({email, password, displayName}){
 export function startLoginWithMailSingIn({email, password}){
     return async function (dispatch){
         dispatch(checkingCredentials())
-        console.log("Buenas")
+
         const resp = await loginWithEmail({email, password})
-        console.log(resp)
+
         resp.ok ? dispatch(login(resp)) : dispatch(setError(resp.errorMessage))
     }
 }

@@ -4,6 +4,7 @@ import { login, logout } from '../store/auth/authSlice';
 import { onAuthStateChanged } from 'firebase/auth';
 import { CheckingAuth } from '../ui/components/CheckingAuth';
 import { FirebaseAuth } from '../firebase/config';
+import { startLoadingNotes } from '../store/journal/thunks';
 
 
 
@@ -26,11 +27,12 @@ export const useCheckAuth = () => {
             photoURL: user.photoURL
           }
         ))
+        dispatch(startLoadingNotes())
       })
   
     }, [])
   
-    console.log(status)
+
 
     return {status};
 }
