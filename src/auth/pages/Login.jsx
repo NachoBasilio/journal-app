@@ -36,7 +36,6 @@ export default function Login() {
   const onGoogleSingIn = (e)=>{
     e.preventDefault();
     dispatch(startGoogleSingIn())
-    console.log("Google Sing In");
   }
 
   return (  

@@ -10,7 +10,6 @@ import { useDispatch, useSelector } from "react-redux";
 export default function JournalPage() {
   const dispatch = useDispatch()
   const {isSaving, active} = useSelector(state => state.journal)
-  console.log(isSaving)
   const onClickNewNote = () => {
     dispatch(startNewNote())
   }

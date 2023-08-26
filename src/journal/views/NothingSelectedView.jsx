@@ -1,7 +1,9 @@
 import { StarOutline } from "@mui/icons-material";
 import { Grid, Typography } from "@mui/material";
 
+
 export default function NothingSelectedView() {
+
   return (
     <Grid
     container

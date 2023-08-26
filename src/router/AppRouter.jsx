@@ -7,7 +7,6 @@ import { useCheckAuth } from "../hooks/useCheckAuth"
 
 export default function AppRouter() {
   const {status} = useCheckAuth()
-  console.log(status)
   if(status === "chequeando"){
     return <CheckingAuth/>
   }
