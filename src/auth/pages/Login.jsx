@@ -7,6 +7,11 @@ import useForm from "../../hooks/useForm";
 import {checkingAuth, startGoogleSingIn, startLoginWithMailSingIn} from "../../store/auth/thunks";
 import { useMemo } from "react";
 
+const formData = {
+  email: "",
+  password: ""
+}
+
 
 export default function Login() {
   const dispatch = useDispatch()
@@ -15,10 +20,7 @@ export default function Login() {
     errorMessage
   } = useSelector(state => state.auth)
 
-  const {email, password, onInputChange, formState} = useForm({
-    email: "",
-    password: ""
-  })
+  const {email, password, onInputChange, formState} = useForm(formData)
 
   const onSubmit = (e)=>{
     e.preventDefault();

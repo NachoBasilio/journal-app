@@ -14,7 +14,7 @@ export const startNewNote = () => {
         const newNote = {
             title: "",
             body: "",
-            date: null,
+            date: new Date().getTime(),
         }
         
         const newDoc = doc(collection(FirestoreDB, `${uid}/journal/notes`));

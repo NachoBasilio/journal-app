@@ -9,6 +9,10 @@ export default function useForm( initialForm = {}, formaValidations = {} ){
         createValidations()
     }, [formState]);
     
+    useEffect(()=>{
+        setFormState(initialForm)
+    },[initialForm])
+
 
     const onInputChange = ({ target }) => {
         const { name, value } = target;
