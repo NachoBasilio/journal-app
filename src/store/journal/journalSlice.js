@@ -45,8 +45,14 @@ const journalSlice = createSlice({
 
     },
     setPhotosToActiveNote: (state, action) => {
-        state.active.inmageUrls = [ ...state.active.inmageUrls, ...action.payload]
+        state.active.imageUrls = [ ...state.active.imageUrls, ...action.payload]
         state.isSaving = false;
+    },
+    cleraNoteLogout: (state) => {
+        state.notes = [];
+        state.isSaving = false;
+        state.messageSaved = "";
+        state.active = null;
     }
   }
 });
@@ -59,7 +65,8 @@ export const {
     updateNote,
     deleteNoteById,
     savingNewNote,
-    setPhotosToActiveNote
+    setPhotosToActiveNote,
+    cleraNoteLogout
 } = journalSlice.actions
 
 export default journalSlice.reducer

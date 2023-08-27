@@ -1,4 +1,5 @@
 import { loginWithEmail, logoutFireBase, registerWithEmail, singInWithGoogle } from "../../firebase/provider"
+import { cleraNoteLogout } from "../journal/journalSlice"
 import { checkingCredentials, login, logout, setError } from "./authSlice"
 
 export function checkingAuth (email, password){
@@ -49,7 +50,9 @@ export function startLoginWithMailSingIn({email, password}){
 export function startLogout(){
     return async function (dispatch){
         await logoutFireBase()
+        dispatch(cleraNoteLogout())
         dispatch(logout())
+
     }
 
 }

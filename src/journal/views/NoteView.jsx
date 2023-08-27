@@ -103,7 +103,7 @@ export default function NoteView() {
           onChange={onInputChange}
           minRows={7}
         />
-        <ImageGallery/>
+        <ImageGallery images={active.imageUrls}/>
       </Grid>
     </Grid>
   )
