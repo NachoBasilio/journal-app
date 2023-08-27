@@ -43,6 +43,10 @@ const journalSlice = createSlice({
     },
     deleteNoteById: (state, action) => {
 
+    },
+    setPhotosToActiveNote: (state, action) => {
+        state.active.inmageUrls = [ ...state.active.inmageUrls, ...action.payload]
+        state.isSaving = false;
     }
   }
 });
@@ -54,7 +58,8 @@ export const {
     setSaving,
     updateNote,
     deleteNoteById,
-    savingNewNote
+    savingNewNote,
+    setPhotosToActiveNote
 } = journalSlice.actions
 
 export default journalSlice.reducer
